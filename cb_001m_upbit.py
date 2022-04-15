@@ -146,7 +146,7 @@ def get_tot_df(ohlcvs
                 , filename = r"D:\2022\CoinbizExpert\data_feature.pickle"
                 , force_download = False):
                 
-    if force_download or  not os.path.exists(filename):
+    if force_download or not os.path.exists(filename):
     
         tot_set = pd.DataFrame(index = tot_idx)
 
@@ -179,6 +179,7 @@ def get_tot_df(ohlcvs
             # tot_set에 합치기
             tot_set = tot_set.join(tot_ohlcv)
 
+            print(key+'is done')
             i += 1
             if i > 30: break
 
@@ -189,5 +190,7 @@ def get_tot_df(ohlcvs
         # Load pickle
         with open(filename,"rb") as fr:
             tot_set = pickle.load(fr)  
+            
+        print('Load pickle')
 
-        
+    return tot_set
